@@ -1,0 +1,34 @@
+USE TableRelations
+GO
+CREATE TABLE Passports (
+    PassportID INT IDENTITY (101,1) NOT NULL,
+    PassportNumber CHAR(8) NOT NULL,
+    CONSTRAINT PK_Passports PRIMARY KEY (PassportID)
+)
+GO
+CREATE TABLE Persons(
+	 PersonID INT IDENTITY NOT NULL,
+	 FirstName NVARCHAR(30) NOT NULL,
+	 Salary DECIMAL(10,2) NOT NULL,
+	 PassportID INT NOT NULL FOREIGN KEY REFERENCES Passports(PassportID),
+	 CONSTRAINT PK_Persons PRIMARY KEY (PersonID)
+)
+GO
+INSERT INTO Passports VALUES
+('N34FG21B'),
+('K65LO4R7'),
+('ZE657QP2')
+GO
+
+SELECT *
+FROM Passports;
+GO
+INSERT INTO Persons VALUES
+('Roberto',43300.00,102),
+('Tom',56100.00,103),
+('Yana',60200.00,101)
+GO
+SELECT * FROM Persons
+
+DROP TABLE Persons
+DROP TABLE Passports
